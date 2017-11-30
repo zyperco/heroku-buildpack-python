@@ -25,7 +25,7 @@ def yield_versions():
 
 
 def main():
-    """Print each version number to stdout."""+
+    """Print each version number to stdout."""
     for version in yield_versions():
         print(version)
 
