@@ -31,7 +31,7 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
-export BUILD_DIR CACHE_DIR ENV_DIR
+export BUILD_DIR CACHE_DIR ENV_DIR ROOT_DIR
 
 # Python defaults
 DEFAULT_PYTHON_VERSION="python-3.6.4"
@@ -215,6 +215,10 @@ if [[ ! "$BUILD_DIR" == "/app" ]]; then
   deep-cp /app/.heroku/src "$BUILD_DIR/.heroku/src"
 fi
 
+# Check package safety.
+let start=$(nowms)
+sub_env "$BIN_DIR/steps/safety"
+mtime "safety.time" "${start}"
 
 # Django collectstatic support.
 let start=$(nowms)

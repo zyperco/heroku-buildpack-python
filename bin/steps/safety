@@ -1,0 +1,16 @@
+# shellcheck source=bin/utils
+source $BIN_DIR/utils
+
+set +e
+
+    $tmpfile = $(mktemp)
+    /app/.heroku/python/bin/python $ROOT_DIR/vendor/safety.zip 2>&1 > $tmpfile
+
+    if [[ $? != 0 ]]; then
+        puts-warn "KNOWN SECURITY VULNERABILITIES FOUND IN DEPENDENCIES!"
+        cat $tmpfile | indent
+    fi
+
+    rm -fr $tmpfile
+
+set -e
