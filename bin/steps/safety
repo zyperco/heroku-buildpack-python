@@ -3,7 +3,7 @@ source $BIN_DIR/utils
 
 set +e
 
-    $tmpfile = $(mktemp)
+    tmpfile=$(mktemp /tmp/heroku-buildpack.XXXXX)
     /app/.heroku/python/bin/python $ROOT_DIR/vendor/safety.zip 2>&1 > $tmpfile
 
     if [[ $? != 0 ]]; then
