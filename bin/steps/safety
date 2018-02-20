@@ -8,7 +8,7 @@ set +e
 
     if [[ $? != 0 ]]; then
         puts-warn "KNOWN SECURITY VULNERABILITIES FOUND IN DEPENDENCIES!"
-        cat $tmpfile | indent
+        cat "$tmpfile" | indent
     fi
 
     rm -fr $tmpfile
